@@ -1,1 +1,16 @@
 <h2>list of Movies</h2>
+
+<h1><%= @list.name %></h1>
+
+<h2>Movies:</h2>
+
+<% if @list.bookmarks.empty? %>
+  <p>  No Movies in this List </p>
+<% else %>
+  <%= @list.bookmarks.each do |bookmark| %>
+  <div>
+    <p><%= bookmark.movie.title %></p>
+    <p><%= bookmark.comment %></p>
+  </div>
+  <% end %>
+<% end %>
