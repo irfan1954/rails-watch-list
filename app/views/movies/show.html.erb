@@ -1,0 +1,16 @@
+
+
+<%= render @movie %>
+
+<p><Strong> List of Movies</Strong></p>
+<ul class="list-group">
+  <% @movie.lists.each do |list| %>
+    <li class="list-group-item">
+      <%= list.name %>
+    </li>
+  <% end %>
+</ul>
+
+<div>
+  <%= link_to "See all Movies", lists_path %>
+</div>

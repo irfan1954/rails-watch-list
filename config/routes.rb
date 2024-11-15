@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-  root to: 'list#index'
+  root to: 'lists#index'
+
+  # root to: 'bookmarks#new'
+
+  # root to: 'bookmarks#create'
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -10,25 +15,25 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  get "movies", to: "movies#index"
+  # get "movies", to: "movies#index"
 
-  get "bookmarks", to: "bookmarks#new"
+  # get "bookmarks", to: "bookmarks#new"
 
-  post "bookmarks", to: "bookmarks#create"
+  # post "bookmarks", to: "bookmarks#create"
 
-  delete "bookmarks", to: "bookmarks#destroy"
+  # delete "bookmarks", to: "bookmarks#destroy"
 
-  get "lists", to: "lists#index"
+  # get "lists", to: "lists#index"
 
-  get "lists", to: "lists#new"
+  # get "lists", to: "lists#new"
 
-  get "lists", to: "lists#show", as: :movie_id
+  # get "lists", to: "lists#show", as: :movie_id
 
-  post "lists", to: "lists#create"
+  # post "lists", to: "lists#create"
 
   resources :movies
-  resources :lists, only: [:index, :show]
-  resources :bookmarks, only: [:new, :create]
-
-  resources :bookmarks, only: :destroy
+  resources :lists, only: [:index, :new, :create, :show] do
+    resources :bookmarks, only: [:new, :create]
+  end
+  resources :bookmarks, only: [:destroy]
 end

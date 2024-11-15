@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
+  # before_action :set_bookmark, only: [:create]
 
-  before_action :set_bookmark, only: [:create]
   def index
     @lists = List.all
   end
@@ -16,9 +16,8 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
-    @list.bookmark = @bookmark
     if @list.save
-      redirect_to bookmark_path(@bookmark)
+      redirect_to list_path(@list)
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,7 +28,7 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:name, :bookmark_id)
+    params.require(:list).permit(:name)
   end
 
 end

@@ -1,11 +1,16 @@
-<h2>list of Movies</h2>
-
 <h1><%= @list.name %></h1>
 
 <h2>Movies:</h2>
 
+<%= simple_form_for([@list, @bookmark]) do |f| %>
+  <%= f.input :comment %>
+  <%= f.association :movie %>
+  <%= f.submit %>
+<% end %>
+
+
 <% if @list.bookmarks.empty? %>
-  <p>  No Movies in this List </p>
+  <p>No Movies in this List</p>
 <% else %>
   <%= @list.bookmarks.each do |bookmark| %>
   <div>
